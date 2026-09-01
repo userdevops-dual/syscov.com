@@ -3,6 +3,7 @@ import { Geist, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CardSpotlight } from "../components/card-spotlight";
 import { ScrollReveal } from "../components/scroll-reveal";
+import { HashScroll } from "../components/hash-scroll";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { SitePreloader } from "../components/site-preloader";
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <SitePreloader />
         <ScrollReveal />
+        <HashScroll />
         <CardSpotlight />
         <SiteHeader />
         {children}
