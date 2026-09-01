@@ -11,8 +11,12 @@ export type ServiceEmbed = "engineering" | "ai" | "security" | "technology";
 
 export type Service = {
   slug: string;
+  /** Shown on the home services section; the rest live on /services. */
+  featured?: boolean;
   name: string;
   navDescription: string;
+  /** Longer copy for the home cards; the nav keeps the short line. */
+  cardDescription?: string;
   icon: IconName;
   eyebrow: string;
   title: string;
@@ -27,6 +31,9 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "web-platforms",
+    cardDescription:
+      "Web experiences built on a real backend, not a template with a form bolted on. We handle the interface, the data behind it, and the parts that have to keep working once traffic and content actually grow.",
+    featured: true,
     name: "Web & product platforms",
     navDescription: "Web experiences built on a real backend.",
     icon: "browser",
@@ -49,6 +56,9 @@ export const services: Service[] = [
   },
   {
     slug: "full-stack-engineering",
+    cardDescription:
+      "Every layer treated as one system, because most failures happen in the gaps between them. Front-end, services, data and deployment are designed together, so nobody ends up owning half a problem.",
+    featured: true,
     name: "Full-stack engineering",
     navDescription: "Every layer of the stack, treated as one system.",
     icon: "layers",
@@ -72,6 +82,9 @@ export const services: Service[] = [
   },
   {
     slug: "ai-automation",
+    cardDescription:
+      "Intelligence wired into the work people already do rather than parked beside it. Retrieval over your own sources, evaluation you can actually trust, and a human kept on the decisions that carry risk.",
+    featured: true,
     name: "AI & automation",
     navDescription: "Intelligence connected to the work around it.",
     icon: "ai",
@@ -118,6 +131,9 @@ export const services: Service[] = [
   },
   {
     slug: "cloud-infrastructure",
+    cardDescription:
+      "Production environments built to be operated, not just launched. Deployment, monitoring and recovery are designed in from the start, so the person on call at 2am is not guessing at what broke.",
+    featured: true,
     name: "Cloud & infrastructure",
     navDescription: "Production environments built to be operated.",
     icon: "cloud",

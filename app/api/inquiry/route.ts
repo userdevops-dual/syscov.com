@@ -33,6 +33,8 @@ export async function POST(request: Request) {
     company: readField(payload, "company", maxLength.company),
     phone: readField(payload, "phone", maxLength.phone),
     projectType: readField(payload, "projectType", 120),
+    // budget/timeline/requirements were removed from the form; still read
+    // so a stale client or a future re-add does not break the endpoint.
     budget: readField(payload, "budget", 60),
     timeline: readField(payload, "timeline", 60),
     description: readField(payload, "description", maxLength.description),

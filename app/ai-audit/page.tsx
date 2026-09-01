@@ -6,6 +6,8 @@ import { Icon, type IconName } from "../../components/icon";
 import { ProcessSteps, type ProcessStep } from "../../components/process-steps";
 import { Section, SectionIntro } from "../../components/section";
 import { aiAuditOffer } from "../../lib/site-content";
+import { VideoBackdrop } from "../../components/video-backdrop";
+import { backdrops } from "../../lib/media";
 
 export const metadata: Metadata = {
   title: "AI Audit — Syscov",
@@ -95,7 +97,7 @@ const differentiators: { icon: IconName; title: string; description: string; hre
     title: "The roadmap is buildable, because we can build it",
     description:
       "Estimates come from implementation experience, and if you want it built, the same team can carry it through.",
-    href: "/#capabilities",
+    href: "/#services",
     linkLabel: "What we build",
   },
   {
@@ -167,7 +169,8 @@ export default function AiAuditPage() {
   return (
     <main id="top">
       {/* 1. Hero */}
-      <header className="audit-hero">
+      <header className="audit-hero has-video">
+        <VideoBackdrop video={backdrops.aiAudit} eager />
         <div className="container">
           <p className="eyebrow" data-reveal>
             AI Audit — fixed scope, {timeframe}

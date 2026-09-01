@@ -11,12 +11,12 @@ const capabilityLinks = [
 ];
 
 const companyLinks = [
-  { label: "What we build", href: "/#capabilities" },
-  { label: "Complex projects", href: "/#work" },
-  { label: "How we work", href: "/#process" },
+  { label: "What we build", href: "/#services" },
+  { label: "AI at Syscov", href: "/#ai" },
   { label: "AI audit", href: "/ai-audit" },
   { label: "Case studies", href: "/case-studies" },
-  { label: "Questions", href: "/#faq" },
+  { label: "Technologies", href: "/#technologies" },
+  { label: "Careers", href: "/#careers" },
 ];
 
 export function SiteFooter() {

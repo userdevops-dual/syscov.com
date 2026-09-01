@@ -25,7 +25,9 @@ export function CaseStudyExplorer() {
     return map;
   }, []);
 
-  const visible = active === "All" ? projects : projects.filter((project) => project.category === active);
+  // Heaviest systems lead the index, whichever filter is active.
+  const ranked = [...projects].sort((a, b) => b.score - a.score);
+  const visible = active === "All" ? ranked : ranked.filter((project) => project.category === active);
 
   return (
     <>

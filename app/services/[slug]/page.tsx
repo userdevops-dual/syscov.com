@@ -7,6 +7,8 @@ import { Icon } from "../../../components/icon";
 import { SecuritySection } from "../../../components/security-section";
 import { Section, SectionIntro } from "../../../components/section";
 import { TechnologyStack } from "../../../components/technology-stack";
+import { VideoBackdrop } from "../../../components/video-backdrop";
+import { serviceBackdrops } from "../../../lib/media";
 import { getService, services, type ServiceEmbed } from "../../../lib/services";
 
 /** Sections that moved off the home page onto the service they describe. */
@@ -31,12 +33,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const service = getService((await params).slug);
   if (!service) notFound();
 
+  const backdrop = serviceBackdrops[service.slug];
+
   const [before, after] = service.title.split(service.emphasis);
   const Embedded = service.embed ? embeds[service.embed] : null;
 
   return (
     <main id="top">
-      <header className="service-hero">
+      <header className={backdrop ? "service-hero has-video" : "service-hero"}>
+        {backdrop && <VideoBackdrop eager video={backdrop} />}
         <div className="container">
           <p className="eyebrow" data-reveal>
             {service.eyebrow}

@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# video masters — 456MB of 4K source, one file over GitHub's 100MB hard limit.
+# Only the compressed /public/media/*.mp4 web versions are tracked.
+/public/media/videos

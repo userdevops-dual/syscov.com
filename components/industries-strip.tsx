@@ -12,14 +12,15 @@ import { Section } from "./section";
  */
 export function IndustriesStrip() {
   return (
-    <Section className="industries" label="Industries" strip>
+    <Section className="industries" label="Industries">
       <p className="eyebrow industries__eyebrow" data-reveal>
         Industries
       </p>
 
-      <ul className="industries__row" data-reveal data-reveal-stagger>
+      <ul className="industries__grid" data-reveal data-reveal-stagger>
         {industries.map((industry) => (
           <li className="industries__item" data-reveal key={industry.name}>
+            <span className="industries__mark" />
             {industry.name}
           </li>
         ))}

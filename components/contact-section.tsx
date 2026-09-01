@@ -16,23 +16,6 @@ const projectTypes = [
   "Not sure yet",
 ];
 
-const budgets = [
-  "Not decided yet",
-  "Under $25k",
-  "$25k – $75k",
-  "$75k – $150k",
-  "$150k+",
-  "Prefer to discuss",
-];
-
-const timelines = [
-  "Right away",
-  "1–3 months",
-  "3–6 months",
-  "Later this year",
-  "Still planning",
-];
-
 type Errors = Partial<Record<"name" | "email" | "description", string>>;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -91,7 +74,7 @@ export function ContactSection() {
   };
 
   return (
-    <Section id="contact" tone="mist">
+    <Section className="contact-section" id="contact" tone="mist">
       <div className="contact-panel" data-reveal>
         <SyscovBracket
           className="contact-panel__bracket contact-panel__bracket--start"
@@ -256,29 +239,6 @@ export function ContactSection() {
                   </select>
                 </div>
 
-                <div className="form-row">
-                  <div className="field">
-                    <label htmlFor="budget">Budget</label>
-                    <select defaultValue={budgets[0]} id="budget" name="budget">
-                      {budgets.map((budget) => (
-                        <option key={budget}>{budget}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="field">
-                    <label htmlFor="timeline">Timeline</label>
-                    <select
-                      defaultValue={timelines[0]}
-                      id="timeline"
-                      name="timeline"
-                    >
-                      {timelines.map((timeline) => (
-                        <option key={timeline}>{timeline}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
                 <div className="field">
                   <label htmlFor="description">Project description</label>
                   <textarea
@@ -291,19 +251,6 @@ export function ContactSection() {
                   {errors.description && (
                     <p className="field__error">{errors.description}</p>
                   )}
-                </div>
-
-                <div className="field">
-                  <label htmlFor="requirements">
-                    Specific requirements{" "}
-                    <span className="field__optional">optional</span>
-                  </label>
-                  <textarea
-                    id="requirements"
-                    name="requirements"
-                    placeholder="Systems it must integrate with, constraints, compliance needs, anything already decided."
-                    rows={2}
-                  />
                 </div>
 
                 <button
@@ -339,7 +286,7 @@ export function ContactSection() {
 
           {/* Describes how an inquiry is handled — intent only, no response times
           or volumes, since none of that has been supplied or verified. */}
-          <aside className="contact-aside contact-aside--end" data-reveal>
+          <aside className="contact-aside contact-aside--end contact-next-card" data-reveal>
             <p className="eyebrow">What happens next</p>
             <ol className="contact-next">
               <li>

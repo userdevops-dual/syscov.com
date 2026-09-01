@@ -17,11 +17,10 @@ const navBefore: NavItem[] = [
 /** Rendered right of it. */
 const navAfter: NavItem[] = [
   { href: "/case-studies", label: "Case Studies", route: true },
-  { href: "/#faq", label: "FAQ", route: false },
 ];
 const navigation: NavItem[] = [...navBefore, ...navAfter];
 
-const trackedSections = ["capabilities", "work", "process", "team", "case-studies", "faq", "contact"];
+const trackedSections = ["services", "ai", "case-studies", "technologies", "careers", "contact"];
 
 
 
@@ -147,7 +146,9 @@ export function SiteHeader() {
             >
               Services
               <span aria-hidden="true" className={`nav-chevron${servicesOpen ? " is-open" : ""}`}>
-                ⌄
+                <svg fill="none" viewBox="0 0 16 16">
+                  <path d="M4 6.5 8 10.5l4-4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                </svg>
               </span>
             </button>
             <div className={`services-menu${servicesOpen ? " is-open" : ""}`}>

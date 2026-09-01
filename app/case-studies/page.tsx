@@ -3,6 +3,8 @@ import Link from "next/link";
 import { CaseStudyExplorer } from "../../components/case-study-explorer";
 import { Section } from "../../components/section";
 import { categories, projects } from "../../lib/case-studies";
+import { VideoBackdrop } from "../../components/video-backdrop";
+import { backdrops } from "../../lib/media";
 
 export const metadata: Metadata = {
   title: "Case Studies — Syscov",
@@ -16,7 +18,8 @@ const range = `${Math.min(...scores).toFixed(1)}–${Math.max(...scores).toFixed
 export default function CaseStudiesPage() {
   return (
     <main id="top">
-      <header className="case-hero">
+      <header className="case-hero has-video">
+        <VideoBackdrop video={backdrops.caseStudies} eager />
         <div className="container">
           <p className="eyebrow" data-reveal>
             Case studies — system index
