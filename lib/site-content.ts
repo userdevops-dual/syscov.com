@@ -6,7 +6,7 @@ export const siteContent = {
   companyName: "Syscov",
   positioning: {
     tagline: "From Ideas to Production-Ready Technology.",
-    alternativeTagline: "Your Technology Partner for Complex Digital Projects.",
+    alternativeTagline: "Your digital journey starts here.",
     emphasis: "Production-Ready",
   },
   primaryObjective:

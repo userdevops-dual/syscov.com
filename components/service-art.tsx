@@ -165,3 +165,59 @@ export const serviceArt: Record<string, ArtName> = {
   security: "shield",
   modernization: "migrate",
 };
+
+/**
+ * Line artwork for dark cards.
+ *
+ * The filled gradient blobs above are built for white cards; on a dark ground
+ * they read as heavy pale smudges. These are stroked instead — thin technical
+ * lines that sit behind the copy without competing with it.
+ */
+export function LineArt({ name, id }: { name: "grid" | "arcs" | "pulse"; id: string }) {
+  const gid = `line-${id}`;
+
+  return (
+    <svg aria-hidden="true" className="line-art" preserveAspectRatio="xMidYMax slice" viewBox="0 0 300 120">
+      <defs>
+        <linearGradient gradientUnits="userSpaceOnUse" id={gid} x1="0" x2="300" y1="40" y2="120">
+          <stop offset="0" stopColor="#d7cbf8" stopOpacity="1" />
+          <stop offset="1" stopColor="#8f7ada" stopOpacity=".45" />
+        </linearGradient>
+      </defs>
+
+      <g fill="none" stroke={`url(#${gid})`} strokeLinecap="round" strokeWidth="1.3">
+        {name === "grid" && (
+          <>
+            {[0, 1, 2, 3, 4].map((row) => (
+              <path d={`M-10 ${52 + row * 18} H310`} key={row} opacity={1 - row * 0.12} />
+            ))}
+            {[40, 100, 160, 220, 280].map((x) => (
+              <path d={`M${x} 44 V130`} key={x} opacity=".6" />
+            ))}
+            {[[100, 70], [160, 88], [220, 106]].map(([cx, cy]) => (
+              <circle cx={cx} cy={cy} fill="#cbbdf5" key={`${cx}`} r="2.6" stroke="none" />
+            ))}
+          </>
+        )}
+
+        {name === "arcs" && (
+          <>
+            {[34, 58, 82, 106, 130].map((r, index) => (
+              <path d={`M${150 - r} 130 A${r} ${r} 0 0 1 ${150 + r} 130`} key={r} opacity={0.9 - index * 0.15} />
+            ))}
+            <circle cx="150" cy="130" fill="#cbbdf5" r="3" stroke="none" />
+          </>
+        )}
+
+        {name === "pulse" && (
+          <>
+            <path d="M-10 100h70l14-34 18 62 16-44 14 22 20-12h168" strokeWidth="1.6" />
+            <path d="M-10 116h300" opacity=".3" />
+            <path d="M-10 84h300" opacity=".18" />
+            <circle cx="102" cy="128" fill="#cbbdf5" r="2.6" stroke="none" />
+          </>
+        )}
+      </g>
+    </svg>
+  );
+}

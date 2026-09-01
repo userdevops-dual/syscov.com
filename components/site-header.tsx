@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Icon } from "./icon";
 import { SyscovMark } from "./syscov-mark";
-import { services } from "../lib/services";
+import { capabilityId, services } from "../lib/services";
 
 type NavItem = { href: string; label: string; route: boolean };
 
@@ -23,6 +23,11 @@ const navigation: NavItem[] = [...navBefore, ...navAfter];
 const trackedSections = ["services", "ai", "case-studies", "technologies", "careers", "contact"];
 
 
+
+/** AI leads the menu — it is the capability the site is pitching hardest. */
+const navServices = [...services].sort((a, b) =>
+  a.slug === "ai-automation" ? -1 : b.slug === "ai-automation" ? 1 : 0,
+);
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -152,17 +157,69 @@ export function SiteHeader() {
               </span>
             </button>
             <div className={`services-menu${servicesOpen ? " is-open" : ""}`}>
-              {services.map((service) => (
-                <Link className="service-link" href={`/services/${service.slug}`} key={service.slug} onClick={closeMenu}>
-                  <span className="service-link__icon">
-                    <Icon name={service.icon} />
-                  </span>
-                  <span>
-                    <strong>{service.name}</strong>
-                    <small>{service.navDescription}</small>
-                  </span>
+              <div className="services-menu__feature">
+                <p className="services-menu__kicker">Start here</p>
+                <p className="services-menu__title">AI Audit</p>
+                <span className="services-menu__art">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    alt="A robotic arm handing a cup to a person"
+                    height={507}
+                    loading="lazy"
+                    src="/media/nav-ai.jpg"
+                    width={760}
+                  />
+                </span>
+                <p className="services-menu__pitch">
+                  A fixed-scope technical read before you commit budget — what is buildable in your stack, what it
+                  costs, and what to do first.
+                </p>
+                <Link className="services-menu__more" href="/ai-audit" onClick={closeMenu}>
+                  See the audit
+                  <svg aria-hidden="true" fill="none" viewBox="0 0 16 16">
+                    <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                  </svg>
                 </Link>
-              ))}
+                <Link className="services-menu__all" href="/services" onClick={closeMenu}>
+                  All services
+                </Link>
+              </div>
+
+              <div className="services-menu__columns">
+                {navServices.map((service) => (
+                  <div
+                    className={`services-menu__group${service.slug === "ai-automation" ? " is-highlight" : ""}`}
+                    key={service.slug}
+                  >
+                    <Link className="services-menu__heading" href={`/services/${service.slug}`} onClick={closeMenu}>
+                      <span className="services-menu__heading-icon">
+                        <Icon name={service.icon} />
+                      </span>
+                      {service.name}
+                    </Link>
+                    <ul>
+                      {service.capabilities.map((capability) => (
+                        <li key={capability.title}>
+                          <Link
+                            className="service-link"
+                            href={`/services/${service.slug}#${capabilityId(capability.title)}`}
+                            onClick={closeMenu}
+                          >
+                            {capability.title}
+                            {/* Shaft and head are separate so the shaft can grow on hover. */}
+                            <span aria-hidden="true" className="link-arrow">
+                              <i />
+                              <svg fill="none" viewBox="0 0 8 12">
+                                <path d="M1.5 1 6.5 6l-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                              </svg>
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

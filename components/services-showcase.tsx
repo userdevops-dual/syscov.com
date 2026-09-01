@@ -14,7 +14,7 @@ export function ServicesShowcase() {
           <p className="eyebrow">What we build</p>
           <h2>Technology shaped around the problem, not a preset package.</h2>
         </div>
-        <Link className="button button--secondary" href="/services">
+        <Link className="button button--secondary button--compact" href="/services">
           View all services
           <span aria-hidden="true" className="button__arrow">
             <svg fill="none" viewBox="0 0 16 16">

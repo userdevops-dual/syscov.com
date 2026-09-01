@@ -265,18 +265,7 @@ export function ContactSection() {
                     </>
                   ) : (
                     <>
-                      Send inquiry{" "}
-                      <span aria-hidden="true" className="button__arrow">
-                        <svg fill="none" viewBox="0 0 16 16">
-                          <path
-                            d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="1.6"
-                          />
-                        </svg>
-                      </span>
+                      Send inquiry
                     </>
                   )}
                 </button>
@@ -290,25 +279,16 @@ export function ContactSection() {
             <p className="eyebrow">What happens next</p>
             <ol className="contact-next">
               <li>
-                <h3>Someone technical reads it</h3>
-                <p>
-                  The message goes to the people who would build it, not to a
-                  sales inbox.
-                </p>
+                <h3>An engineer reads it first</h3>
+                <p>Your message reaches the people who would build the work, not a sales queue.</p>
               </li>
               <li>
-                <h3>You get a straight read</h3>
-                <p>
-                  What it would take, what makes it hard, and where the risk
-                  actually sits.
-                </p>
+                <h3>You get a technical assessment</h3>
+                <p>What the work involves, where the difficulty sits, and what we would resolve first.</p>
               </li>
               <li>
                 <h3>We scope it together</h3>
-                <p>
-                  If it is a fit, we work out the shape of the project before
-                  anyone commits to it.
-                </p>
+                <p>If there is a fit, we define the shape of the engagement before either side commits.</p>
               </li>
             </ol>
           </aside>

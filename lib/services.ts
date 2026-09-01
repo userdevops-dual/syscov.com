@@ -9,8 +9,13 @@ import type { IconName } from "../components/icon";
  */
 export type ServiceEmbed = "engineering" | "ai" | "security" | "technology";
 
+/** Column headings in the nav mega-menu. */
+export type ServiceGroup = "Build & ship" | "Run & secure" | "Intelligence";
+export const serviceGroups: ServiceGroup[] = ["Build & ship", "Run & secure", "Intelligence"];
+
 export type Service = {
   slug: string;
+  group: ServiceGroup;
   /** Shown on the home services section; the rest live on /services. */
   featured?: boolean;
   name: string;
@@ -31,6 +36,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "web-platforms",
+    group: "Build & ship",
     cardDescription:
       "Web experiences built on a real backend, not a template with a form bolted on. We handle the interface, the data behind it, and the parts that have to keep working once traffic and content actually grow.",
     featured: true,
@@ -56,6 +62,7 @@ export const services: Service[] = [
   },
   {
     slug: "full-stack-engineering",
+    group: "Build & ship",
     cardDescription:
       "Every layer treated as one system, because most failures happen in the gaps between them. Front-end, services, data and deployment are designed together, so nobody ends up owning half a problem.",
     featured: true,
@@ -82,6 +89,7 @@ export const services: Service[] = [
   },
   {
     slug: "ai-automation",
+    group: "Intelligence",
     cardDescription:
       "Intelligence wired into the work people already do rather than parked beside it. Retrieval over your own sources, evaluation you can actually trust, and a human kept on the decisions that carry risk.",
     featured: true,
@@ -108,6 +116,7 @@ export const services: Service[] = [
   },
   {
     slug: "security",
+    group: "Run & secure",
     name: "Security engineering",
     navDescription: "Access, data, and evidence designed in early.",
     icon: "shield",
@@ -131,6 +140,7 @@ export const services: Service[] = [
   },
   {
     slug: "cloud-infrastructure",
+    group: "Run & secure",
     cardDescription:
       "Production environments built to be operated, not just launched. Deployment, monitoring and recovery are designed in from the start, so the person on call at 2am is not guessing at what broke.",
     featured: true,
@@ -157,6 +167,7 @@ export const services: Service[] = [
   },
   {
     slug: "modernization",
+    group: "Build & ship",
     name: "Modernization",
     navDescription: "A staged route off a system that has stopped moving.",
     icon: "handoff",
@@ -178,6 +189,15 @@ export const services: Service[] = [
     ],
   },
 ];
+
+/** Anchor id for a capability card — shared by the nav and the service page. */
+export function capabilityId(title: string) {
+  return title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 export function getService(slug: string) {
   return services.find((service) => service.slug === slug);

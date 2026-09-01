@@ -9,7 +9,7 @@ import { Section, SectionIntro } from "../../../components/section";
 import { TechnologyStack } from "../../../components/technology-stack";
 import { VideoBackdrop } from "../../../components/video-backdrop";
 import { serviceBackdrops } from "../../../lib/media";
-import { getService, services, type ServiceEmbed } from "../../../lib/services";
+import { capabilityId, getService, services, type ServiceEmbed } from "../../../lib/services";
 
 /** Sections that moved off the home page onto the service they describe. */
 const embeds: Record<ServiceEmbed, () => React.ReactElement> = {
@@ -64,7 +64,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </SectionIntro>
         <div className="service-grid" data-reveal-stagger>
           {service.capabilities.map((capability) => (
-            <article className="service-card" data-reveal key={capability.title}>
+            <article className="service-card" data-reveal id={capabilityId(capability.title)} key={capability.title}>
               <span className="service-card__icon">
                 <Icon name={capability.icon} />
               </span>

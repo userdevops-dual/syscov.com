@@ -11,7 +11,7 @@ export function SyscovMark({ className, title = "Syscov", gradientId = "syscov-m
 
   return (
     <svg
-      className={className}
+      className={className ? `syscov-mark ${className}` : "syscov-mark"}
       fill="none"
       viewBox="0 0 900 900"
       xmlns="http://www.w3.org/2000/svg"

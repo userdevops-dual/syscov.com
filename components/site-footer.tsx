@@ -1,21 +1,20 @@
 import Link from "next/link";
 import { SyscovMark } from "./syscov-mark";
 import { contactDetails, siteContent, socialLinks } from "../lib/site-content";
-import { services } from "../lib/services";
+import { capabilityId, services } from "../lib/services";
 
-/* The four capability sections now live on their own routes, so the footer
-   links to the services rather than to anchors that no longer exist. */
-const capabilityLinks = [
-  { label: "All services", href: "/services" },
-  ...services.slice(0, 4).map((service) => ({ label: service.name, href: `/services/${service.slug}` })),
-];
+/** All six services, straight from the one array the nav and pages read. */
+const serviceLinks = services.map((service) => ({
+  label: service.name,
+  href: `/services/${service.slug}`,
+}));
 
 const companyLinks = [
   { label: "What we build", href: "/#services" },
-  { label: "AI at Syscov", href: "/#ai" },
-  { label: "AI audit", href: "/ai-audit" },
+  { label: "Build AI with Syscov", href: "/#ai" },
   { label: "Case studies", href: "/case-studies" },
   { label: "Technologies", href: "/#technologies" },
+  { label: "How we work together", href: "/#engagement" },
   { label: "Careers", href: "/#careers" },
 ];
 
@@ -32,15 +31,28 @@ export function SiteFooter() {
               <span>{siteContent.companyName}</span>
             </Link>
             <p>{siteContent.positioning.alternativeTagline}</p>
+            <p className="site-footer__disciplines">
+              <span>Technology</span>
+              <span>Engineering</span>
+              <span>AI</span>
+              <span>Cloud</span>
+              <span>Security</span>
+            </p>
           </div>
 
-          <nav aria-label="Capabilities">
-            <h2>Capabilities</h2>
+          <nav aria-label="Services">
+            <h2>Services</h2>
             <ul>
-              {capabilityLinks.map((link) => (
+              {serviceLinks.map((link) => (
                 <li key={link.href}>
-                  <Link className="text-link" href={link.href}>
+                  <Link className="footer-link" href={link.href}>
                     {link.label}
+                    <span aria-hidden="true" className="link-arrow">
+                      <i />
+                      <svg fill="none" viewBox="0 0 8 12">
+                        <path d="M1.5 1 6.5 6l-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                      </svg>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -52,8 +64,14 @@ export function SiteFooter() {
             <ul>
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link className="text-link" href={link.href}>
+                  <Link className="footer-link" href={link.href}>
                     {link.label}
+                    <span aria-hidden="true" className="link-arrow">
+                      <i />
+                      <svg fill="none" viewBox="0 0 8 12">
+                        <path d="M1.5 1 6.5 6l-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                      </svg>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -61,13 +79,42 @@ export function SiteFooter() {
           </nav>
 
           <div className="site-footer__contact">
-            <h2>Contact</h2>
+            <h2>Get started</h2>
             <ul>
               <li>
-                <Link className="text-link" href="/#contact">
-                  Start a project
+                <Link className="footer-link" href="/ai-audit">
+                  Book an AI audit
+                  <span aria-hidden="true" className="link-arrow">
+                    <i />
+                    <svg fill="none" viewBox="0 0 8 12">
+                      <path d="M1.5 1 6.5 6l-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                    </svg>
+                  </span>
                 </Link>
               </li>
+              <li>
+                <Link className="footer-link" href="/#contact">
+                  Start a project
+                  <span aria-hidden="true" className="link-arrow">
+                    <i />
+                    <svg fill="none" viewBox="0 0 8 12">
+                      <path d="M1.5 1 6.5 6l-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                    </svg>
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link className="footer-link" href="/#careers">
+                  Work with us
+                  <span aria-hidden="true" className="link-arrow">
+                    <i />
+                    <svg fill="none" viewBox="0 0 8 12">
+                      <path d="M1.5 1 6.5 6l-5 5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+                    </svg>
+                  </span>
+                </Link>
+              </li>
+              {/* Rendered only once real, approved details exist — see lib/site-content.ts */}
               {contactDetails.email && (
                 <li>
                   <a className="text-link" href={`mailto:${contactDetails.email}`}>
@@ -82,6 +129,7 @@ export function SiteFooter() {
                   </a>
                 </li>
               )}
+              {contactDetails.location && <li className="site-footer__muted">{contactDetails.location}</li>}
               {socialLinks.map((link) => (
                 <li key={link.href}>
                   <a className="text-link" href={link.href} rel="noreferrer noopener" target="_blank">
@@ -93,18 +141,41 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <div className="site-footer__deep">
+          <h2>Capabilities</h2>
+          <div className="site-footer__deep-grid">
+            {services.map((service) => (
+              <div key={service.slug}>
+                <Link className="site-footer__deep-title" href={`/services/${service.slug}`}>
+                  {service.name}
+                </Link>
+                <ul>
+                  {service.capabilities.map((capability) => (
+                    <li key={capability.title}>
+                      <Link
+                        className="site-footer__deep-link"
+                        href={`/services/${service.slug}#${capabilityId(capability.title)}`}
+                      >
+                        {capability.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="site-footer__bottom">
           <p>
             © {year} {siteContent.companyName}. All rights reserved.
           </p>
-          <p className="site-footer__legal">
-            <Link className="text-link" href="/">
-              Privacy
-            </Link>
-            <Link className="text-link" href="/">
-              Terms
-            </Link>
-          </p>
+          {/*
+            Privacy and Terms previously linked to "/" — a dead link on a page
+            visitors expect to be real. They come back when the actual policies
+            exist and have their own routes.
+          */}
+          <p className="site-footer__note">Built and run by the team that would build yours.</p>
         </div>
       </div>
     </footer>

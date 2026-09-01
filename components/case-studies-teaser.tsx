@@ -15,7 +15,7 @@ export function CaseStudiesTeaser() {
           <p className="eyebrow">Case studies</p>
           <h2>Systems that had to hold up under real load.</h2>
         </div>
-        <Link className="button button--light" href="/case-studies">
+        <Link className="button button--light button--compact" href="/case-studies">
           View all case studies
           <span aria-hidden="true" className="button__arrow">
             <svg fill="none" viewBox="0 0 16 16">

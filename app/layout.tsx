@@ -22,7 +22,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  /**
+   * Tints the browser UI around the page — the address bar on Android Chrome
+   * and the status bar on iOS Safari. #211a3d is --graphite-rgb (33 26 61),
+   * the logo's dark; keep the two in step if the token ever changes.
+   */
+  themeColor: "#211a3d",
+  colorScheme: "light dark",
 };
 
 /**
