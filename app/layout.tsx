@@ -16,18 +16,15 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swa
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  title: `${siteContent.companyName} — Technology Engineering`,
+  /* Shown in the tab, the tab tooltip, and search results — so it says what
+     Syscov does rather than naming a category. */
+  title: `${siteContent.companyName} — From ideas to production-ready technology`,
   description:
     "Syscov is a technology engineering partner for complex digital projects — web platforms, custom software, AI, cloud, and security, from idea through production.",
 };
 
 export const viewport: Viewport = {
-  /**
-   * Tints the browser UI around the page — the address bar on Android Chrome
-   * and the status bar on iOS Safari. #211a3d is --graphite-rgb (33 26 61),
-   * the logo's dark; keep the two in step if the token ever changes.
-   */
-  themeColor: "#211a3d",
+  themeColor: "#ffffff",
   colorScheme: "light dark",
 };
 
