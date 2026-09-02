@@ -62,18 +62,38 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <p className="eyebrow">What this covers</p>
           <h2>The work inside this service.</h2>
         </SectionIntro>
-        <div className="service-grid" data-reveal-stagger>
-          {service.capabilities.map((capability) => (
-            <article className="service-card" data-reveal id={capabilityId(capability.title)} key={capability.title}>
-              <span className="service-card__icon">
-                <Icon name={capability.icon} />
-              </span>
-              <h3>{capability.title}</h3>
-              <p>{capability.description}</p>
-            </article>
-          ))}
-        </div>
       </Section>
+
+      {/* Each capability is its own section rather than a card in a grid, so the
+          deep links in the nav and footer land on something substantial. */}
+      {service.capabilities.map((capability, index) => (
+        <Section
+          className={index % 2 === 1 ? "capability capability--alt" : "capability"}
+          id={capabilityId(capability.title)}
+          key={capability.title}
+          tone={index % 2 === 1 ? "mist" : "paper"}
+        >
+          <div className="capability__grid">
+            <div className="capability__copy" data-reveal>
+              <p className="capability__index">
+                <span className="capability__icon">
+                  <Icon name={capability.icon} />
+                </span>
+                {String(index + 1).padStart(2, "0")} / {service.capabilities.length}
+              </p>
+              <h2>{capability.title}</h2>
+              <p className="capability__pitch">{capability.pitch}</p>
+              <p className="capability__description">{capability.description}</p>
+            </div>
+
+            <ul className="capability__points" data-reveal>
+              {capability.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      ))}
 
       {Embedded && <Embedded />}
 
