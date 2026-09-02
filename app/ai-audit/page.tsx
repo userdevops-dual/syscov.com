@@ -83,7 +83,7 @@ const differentiators: { icon: IconName; title: string; description: string; hre
     title: "Built by engineers, not strategists",
     description:
       "The people scoring feasibility are the people who work across the whole stack every day — frontend through infrastructure.",
-    href: "/#engineering",
+    href: "/services/full-stack-engineering",
     linkLabel: "See the stack",
   },
   {
@@ -105,7 +105,7 @@ const differentiators: { icon: IconName; title: string; description: string; hre
     title: "Security-aware from day one",
     description:
       "Access, data handling, and auditability are considered while options are still on the table — not bolted on after a decision.",
-    href: "/#security",
+    href: "/services/security",
     linkLabel: "How we treat security",
   },
 ];
